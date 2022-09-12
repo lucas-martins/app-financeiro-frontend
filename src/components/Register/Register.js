@@ -3,11 +3,17 @@ import styles from './Register.module.css'
 import {Card, CardHeader, CardBody, Button, Form, FormField, TextInput, Box} from 'grommet'
 
 export const Register = () => {
-  const [formValue, setFormValue] = React.useState({});
+  const [formValue, setFormValue] = React.useState({
+    fullName: '',
+    email: '',
+    userName: '',
+    password: '',
+    confirmPassword: ''
+  });
 
-  // const formSubmitted = (formValue) => {
-  //   console.log(formValue)
-  // }
+  const formSubmitted = (formValue) => {
+    console.log(formValue)
+  }
 
   return (
     <div className={styles.container}>
@@ -20,16 +26,22 @@ export const Register = () => {
             value={formValue}
             onChange={nextValue => setFormValue(nextValue)}
             onReset={() => setFormValue({})}
-            onSubmit={({ value }) => {console.log(value)}}
+            onSubmit={({ value }) => {formSubmitted(value)}}
           >
             <FormField name="fullName" htmlFor="fullName" label="Nome">
-              <TextInput id="fullName" placeholder="Ex: João da Silva" name="fullName" />
+              <TextInput type="text" id="fullName" placeholder="Ex: João da Silva" name="fullName" />
             </FormField>
             <FormField name="email" htmlFor="email" label="E-mail">
-              <TextInput id="email" placeholder="Ex: joao.silva@gmail.com" name="email" />
+              <TextInput type="email" id="email" placeholder="Ex: joao.silva@gmail.com" name="email" />
             </FormField>
             <FormField name="userName" htmlFor="userName" label="Nome de Usuário">
-              <TextInput id="userName" placeholder="Ex: joao.silva" name="userName" />
+              <TextInput type="text" id="userName" placeholder="Ex: joao.silva" name="userName" />
+            </FormField>
+            <FormField name="password" htmlFor="password" label="Senha">
+              <TextInput type="password" id="password" placeholder="Ex: 123456" name="password" />
+            </FormField>
+            <FormField name="confirmPassword" htmlFor="confirmPassword" label="Confirmação de Senha">
+              <TextInput type="password" id="confirmPassword" placeholder="Ex: 123456" name="confirmPassword" />
             </FormField>
             <Box direction="row" justify="between">
               <Button type="submit" primary label="Cadastrar" />
