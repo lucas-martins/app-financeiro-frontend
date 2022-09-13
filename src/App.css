@@ -9,3 +9,7 @@ body {
 .AppBody {
   flex: 1;
 }
+
+.tooltip {
+  color: #F8F8F8;
+}

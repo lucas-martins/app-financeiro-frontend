@@ -1,6 +1,10 @@
 import React from 'react'
 import styles from './Register.module.css'
-import {Card, CardHeader, CardBody, Button, Form, FormField, TextInput, Box} from 'grommet'
+import {Card, CardHeader, CardBody, Button, Form, FormField, TextInput, Box, Tip} from 'grommet'
+import { LinkPrevious } from 'grommet-icons'
+
+import { inputs } from './Inputs'
+
 
 export const Register = () => {
   const [formValue, setFormValue] = React.useState({
@@ -18,7 +22,19 @@ export const Register = () => {
   return (
     <div className={styles.container}>
       <Card height="large" width="large" background="dark-2">
-        <CardHeader pad="medium" background="dark-1">
+        <CardHeader className={styles.header} pad="medium" background="dark-1">
+          <Tip 
+            content={
+              <div className='tooltip'>
+                <span>Voltar</span>
+              </div>
+            }
+            dropProps={{
+              align: { left: "right" }, 
+            }}
+          >
+            <Button icon={<LinkPrevious color="#eee" />} hoverIndicator />
+          </Tip>
           <h1>Cadastro de Usuário</h1>
         </CardHeader>
         <CardBody pad="medium">
@@ -28,21 +44,15 @@ export const Register = () => {
             onReset={() => setFormValue({})}
             onSubmit={({ value }) => {formSubmitted(value)}}
           >
-            <FormField name="fullName" htmlFor="fullName" label="Nome">
-              <TextInput type="text" id="fullName" placeholder="Ex: João da Silva" name="fullName" />
-            </FormField>
-            <FormField name="email" htmlFor="email" label="E-mail">
-              <TextInput type="email" id="email" placeholder="Ex: joao.silva@gmail.com" name="email" />
-            </FormField>
-            <FormField name="userName" htmlFor="userName" label="Nome de Usuário">
-              <TextInput type="text" id="userName" placeholder="Ex: joao.silva" name="userName" />
-            </FormField>
-            <FormField name="password" htmlFor="password" label="Senha">
-              <TextInput type="password" id="password" placeholder="Ex: 123456" name="password" />
-            </FormField>
-            <FormField name="confirmPassword" htmlFor="confirmPassword" label="Confirmação de Senha">
-              <TextInput type="password" id="confirmPassword" placeholder="Ex: 123456" name="confirmPassword" />
-            </FormField>
+            {
+              inputs.map(input => {
+                return (
+                  <FormField key={input.name} name={input.name} htmlFor={input.name} label={input.label}>
+                    <TextInput type={input.type} id={input.name} placeholder={input.placeholder} name={input.name} />
+                  </FormField>
+                )
+              })
+            }
             <Box direction="row" justify="between">
               <Button type="submit" primary label="Cadastrar" />
               <Button type="reset" label="Limpar" />
