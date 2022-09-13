@@ -5,15 +5,24 @@ import { LinkPrevious } from 'grommet-icons'
 
 import { inputs } from './Inputs'
 
+const defaultValue = {
+  fullName: '',
+  email: '',
+  userName: '',
+  password: '',
+  confirmPassword: ''
+}
+
 
 export const Register = () => {
-  const [formValue, setFormValue] = React.useState({
-    fullName: '',
-    email: '',
-    userName: '',
-    password: '',
-    confirmPassword: ''
-  });
+  const [formValue, setFormValue] = React.useState(defaultValue);
+  const [hasEmptyValues, setHasEmptyValues] = React.useState(true)
+
+  React.useEffect(() => {
+    const values = Object.values(formValue)
+    const hasEmptyValues = values.some(value => !value.length)
+    setHasEmptyValues(hasEmptyValues)
+  }, [formValue, setHasEmptyValues])
 
   const formSubmitted = (formValue) => {
     console.log(formValue)
@@ -41,21 +50,21 @@ export const Register = () => {
           <Form
             value={formValue}
             onChange={nextValue => setFormValue(nextValue)}
-            onReset={() => setFormValue({})}
+            onReset={() => setFormValue(defaultValue)}
             onSubmit={({ value }) => {formSubmitted(value)}}
           >
             {
               inputs.map(input => {
                 return (
                   <FormField key={input.name} name={input.name} htmlFor={input.name} label={input.label}>
-                    <TextInput type={input.type} id={input.name} placeholder={input.placeholder} name={input.name} />
+                    <TextInput type={input.type} id={input.name} placeholder={input.placeholder} name={input.name}/>
                   </FormField>
                 )
               })
             }
             <Box direction="row" justify="between">
-              <Button type="submit" primary label="Cadastrar" />
-              <Button type="reset" label="Limpar" />
+              <Button type="submit" disabled={hasEmptyValues} primary label="Cadastrar" color="#7D4CDB" />
+              <Button type="reset" label="Limpar" color="#7D4CDB" />
             </Box>
           </Form>
         </CardBody>
