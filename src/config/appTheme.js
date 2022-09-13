@@ -1,9 +1,15 @@
 export const theme = {
-    global: {
-      font: {
-        family: 'Roboto',
-        size: '18px',
-        height: '20px',
-      },
+  global: {
+    hover: {
+      color: "#eee"
     },
-  };
+    colors: {
+      focus: "#7D4CDB",
+    },
+    font: {
+      family: 'Roboto',
+      size: '18px',
+      height: '20px',
+    }
+  },
+};

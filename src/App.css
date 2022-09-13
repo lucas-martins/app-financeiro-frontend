@@ -13,3 +13,8 @@ body {
 .tooltip {
   color: #F8F8F8;
 }
+
+.global-container {
+  height: 100vh;
+  background-color: #7D4CDB;
+}
