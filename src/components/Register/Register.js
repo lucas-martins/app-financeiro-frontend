@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Register.module.css'
 import {Card, CardHeader, CardBody, Button, Form, FormField, TextInput, Box, Tip, Spinner} from 'grommet'
-import { LinkPrevious } from 'grommet-icons'
+import { LinkPrevious, FormView, Hide } from 'grommet-icons'
 import { toast} from 'react-toastify';
 
 import { inputs } from './Inputs'
@@ -24,6 +24,8 @@ const defaultValue = {
 export const Register = () => {
   const [formValue, setFormValue] = React.useState(defaultValue);
   const [hasEmptyValues, setHasEmptyValues] = React.useState(true)
+  const [showFields, setShowFields] = React.useState([])
+
   const {loading, setLoading} = React.useContext(UserContext)
 
   const navigate = useNavigate()
@@ -45,12 +47,17 @@ export const Register = () => {
     .then((response) => {
       toast.success(response.data.message, toastConfig);
       setFormValue(defaultValue)
+      setShowFields([])
       navigate('/login')
     })
     .catch((error) => {
       toast.error(error.response.data.message, toastConfig);
     })
     .finally(() => setLoading(false))
+  }
+
+  const handlePasswordButton = (field) => {
+    showFields.includes(field) ? setShowFields(showFields.filter(x => x !== field)) : setShowFields([...showFields, field])
   }
 
   return (
@@ -86,12 +93,26 @@ export const Register = () => {
               inputs.map(input => {
                 return (
                   <FormField key={input.name} name={input.name} htmlFor={input.name} label={input.label}>
-                    <TextInput type={input.type} id={input.name} placeholder={input.placeholder} name={input.name}/>
+                    <TextInput 
+                      type={showFields.includes(input.name) ? 'text' : input.type}
+                      id={input.name}
+                      placeholder={input.placeholder}
+                      name={input.name}
+                    />
+                    <div className={styles.password}>
+                      {input.type === 'password' && 
+                        <Button 
+                          className={styles.passwordButton}
+                          icon={showFields.includes(input.name) ? <Hide /> : <FormView />}
+                          onClick={() => handlePasswordButton(input.name)}
+                        />
+                      }
+                    </div>
                   </FormField>
                 )
               })
             }
-            <Box direction="row" justify="between">
+            <Box className={styles.buttonBox} direction="row" justify="between">
               <Button 
                 type="submit"
                 disabled={hasEmptyValues}
