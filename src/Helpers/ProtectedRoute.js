@@ -2,9 +2,9 @@ import React from 'react'
 import { Navigate } from 'react-router-dom'
 
 const ProtectedRoute = ({children}) => {
-  const userToken = window.localStorage.getItem('userToken')
-  //TODO Alterar rota para login
-  return userToken ? children : <Navigate to='/register' />
+  const userToken = window.localStorage.getItem('token')
+  console.log(userToken)
+  return userToken ? children : <Navigate to='/login' />
 }
 
 export default ProtectedRoute

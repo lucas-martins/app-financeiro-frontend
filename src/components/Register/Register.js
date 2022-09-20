@@ -2,9 +2,9 @@ import React from 'react'
 import styles from './Register.module.css'
 import {Card, CardHeader, CardBody, Button, Form, FormField, TextInput, Box, Tip, Spinner} from 'grommet'
 import { LinkPrevious, FormView, Hide } from 'grommet-icons'
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
-import { inputs } from './Inputs'
+import { registerInputs } from './RegisterInputs'
 import { baseUrl } from '../../Helpers/BaseUrl'
 import { toastConfig } from '../../config/ToastConfig';
 import { UserContext } from '../../UserContext';
@@ -61,7 +61,7 @@ export const Register = () => {
   }
 
   return (
-    <div className={`${styles.container} global-container`}>
+    <div className="global-container user-container">
       <Card height="large" width="large" background="dark-2">
         <CardHeader className={styles.header} pad="medium" background="dark-1">
           <Tip 
@@ -90,7 +90,7 @@ export const Register = () => {
             onSubmit={({ value }) => {formSubmitted(value)}}
           >
             {
-              inputs.map(input => {
+              registerInputs.map(input => {
                 return (
                   <FormField key={input.name} name={input.name} htmlFor={input.name} label={input.label}>
                     <TextInput 

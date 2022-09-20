@@ -1,4 +1,4 @@
-export const inputs = [
+export const registerInputs = [
     {
       name: 'fullName',
       label: 'Nome',
