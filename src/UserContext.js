@@ -3,7 +3,7 @@ import React from 'react'
 export const UserContext = React.createContext();
 
 export const UserStorage = ({children}) => {
-    const userToken = window.localStorage.getItem('userToken')
+    const userToken = window.localStorage.getItem('token')
 
     const [loading, setLoading] = React.useState(false)
 

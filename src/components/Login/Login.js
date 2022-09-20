@@ -38,8 +38,7 @@ export const Login = () => {
     setLoading(true)
     axios.post(`${baseUrl}/login`, formValue)
     .then(({data}) => {
-      console.log(data)
-      window.localStorage.setItem('user_id', data.user.id)
+      window.localStorage.setItem('user_id', data.user)
       window.localStorage.setItem('token', data.token)
       toast.success('Login realizado com sucesso!', toastConfig);
       setFormValue(defaultValue)

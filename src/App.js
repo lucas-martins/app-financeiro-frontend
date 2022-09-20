@@ -16,6 +16,7 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Home } from './components/Home/Home';
 import ProtectedRoute from './Helpers/ProtectedRoute';
+import { Account } from './components/Account/Account';
 
 function App() {
   return (
@@ -35,6 +36,11 @@ function App() {
               <Route path="/home" element={
                   <ProtectedRoute>
                     <Home />
+                  </ProtectedRoute>
+              }/>
+              <Route path="/account" element={
+                  <ProtectedRoute>
+                    <Account />
                   </ProtectedRoute>
               }/>
             </Routes>
