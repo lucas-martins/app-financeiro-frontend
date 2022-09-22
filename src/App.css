@@ -45,3 +45,29 @@ body {
 .buttonBox {
   margin-top: 1rem;
 }
+
+.animeRight{
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeRight .5s forwards;
+}
+
+@keyframes animeRight {
+  to {
+      opacity: 1;
+      transform: initial;
+  }
+}
+
+.animeLeft{
+  opacity: 0;
+  transform: translateX(20px);
+  animation: animeLeft .5s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+      opacity: 1;
+      transform: initial;
+  }
+}

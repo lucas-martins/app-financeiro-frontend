@@ -6,17 +6,23 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { UserStorage } from './UserContext';
+import { UserStorage} from './UserContext';
 
 import { theme } from './config/appTheme';
 import { ToastContainerApp } from './components/utils/ToastContainerApp';
 
 import { HeaderApp } from './components/Header/HeaderApp';
+import { SidebarApp } from './components/Sidebar/SidebarApp';
 import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Home } from './components/Home/Home';
-import ProtectedRoute from './Helpers/ProtectedRoute';
 import { Account } from './components/Account/Account';
+import {Graphs} from './components/Graphs/Graphs'
+import { Transactions } from './components/Transactions/Transactions';
+import {Calendar} from './components/Calendar/Calendar'
+
+import ProtectedRoute from './Helpers/ProtectedRoute';
+
 
 function App() {
   return (
@@ -24,6 +30,7 @@ function App() {
       <BrowserRouter>
         <UserStorage>
           <HeaderApp />
+          <SidebarApp />
           <main className='AppBody'>
             <Routes>
               <Route path="/" element={
@@ -41,6 +48,21 @@ function App() {
               <Route path="/account" element={
                   <ProtectedRoute>
                     <Account />
+                  </ProtectedRoute>
+              }/>
+              <Route path="/transactions" element={
+                  <ProtectedRoute>
+                    <Transactions />
+                  </ProtectedRoute>
+              }/>
+              <Route path="/graphs" element={
+                  <ProtectedRoute>
+                    <Graphs />
+                  </ProtectedRoute>
+              }/>
+              <Route path="/calendar" element={
+                  <ProtectedRoute>
+                    <Calendar />
                   </ProtectedRoute>
               }/>
             </Routes>

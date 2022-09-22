@@ -1,0 +1,18 @@
+.sideBarMainButton {
+    position: absolute;
+    left: 1%;
+    margin-top: .5%;
+    /* background-color: "#7D4CDB"; */
+}
+
+.sideBarMenuOpen {
+    position: absolute;
+    left: 15%;
+    /* background-color: "transparent"; */
+
+}
+
+.buttonMenu svg {
+    fill: #eee;
+    stroke: #eee;
+}

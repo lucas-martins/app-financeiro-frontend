@@ -3,29 +3,31 @@ import { Header, Button, Menu } from 'grommet'
 import {Home} from 'grommet-icons'
 import { useNavigate } from 'react-router-dom'
 
+import { UserContext } from '../../UserContext'
+
 export const HeaderApp = () => {
-  const userToken = window.localStorage.getItem('token')
   const navigate = useNavigate()
+
+  const {token, setToken} = React.useContext(UserContext)
 
   const menuItems = [
     { label: 'Minha Conta', onClick: () => handleMyAccount() },
     { label: 'Sair', onClick: () => handleLogout() },
   ]
 
-  const handleMyAccount = () => {
-    navigate('/account')
-  }
+  const handleMyAccount = () => navigate('/account')
 
   const handleLogout = () => {
     window.localStorage.removeItem('user_id')
     window.localStorage.removeItem('token')
+    setToken(false)
     navigate('/login')
   }
 
   return (
     <>
     {
-      userToken ? 
+      token ? 
       <Header background="dark-1" sticky= "scrollUp">
         <Button icon={<Home />} hoverIndicator onClick={() => navigate('/')} />
         <h2>App Financeiro</h2>

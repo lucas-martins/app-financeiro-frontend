@@ -23,7 +23,7 @@ export const Login = () => {
   const [hasEmptyValues, setHasEmptyValues] = React.useState(true)
   const [showPassword, setShowPassword] = React.useState([])
 
-  const {loading, setLoading} = React.useContext(UserContext)
+  const {loading, setLoading, setToken} = React.useContext(UserContext)
 
   React.useEffect(() => {
     const values = Object.values(formValue)
@@ -38,11 +38,12 @@ export const Login = () => {
     setLoading(true)
     axios.post(`${baseUrl}/login`, formValue)
     .then(({data}) => {
-      window.localStorage.setItem('user_id', data.user)
+      window.localStorage.setItem('user_id', JSON.stringify(data.user))
       window.localStorage.setItem('token', data.token)
       toast.success('Login realizado com sucesso!', toastConfig);
       setFormValue(defaultValue)
       setShowPassword([])
+      setToken(true)
       navigate('/home')
     })
     .catch((error) => {
