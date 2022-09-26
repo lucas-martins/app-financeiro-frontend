@@ -5,6 +5,7 @@ export const theme = {
     },
     colors: {
       focus: "#7D4CDB",
+      control: "#7D4CDB",
     },
     font: {
       family: 'Roboto',
