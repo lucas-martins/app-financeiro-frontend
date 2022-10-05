@@ -4,6 +4,10 @@ export const buttons = [
         route: 'home'
     },
     {
+        label: 'Minhas Contas',
+        route: 'financialAccounts'
+    },
+    {
         label: 'Transações',
         route: 'transactions'
     },

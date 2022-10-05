@@ -22,6 +22,7 @@ import { Transactions } from './components/Transactions/Transactions';
 import {Calendar} from './components/Calendar/Calendar'
 
 import ProtectedRoute from './Helpers/ProtectedRoute';
+import { FinancialAccounts } from './components/FinancialAccounts/FinancialAccounts';
 
 
 function App() {
@@ -48,6 +49,11 @@ function App() {
               <Route path="/account" element={
                   <ProtectedRoute>
                     <Account />
+                  </ProtectedRoute>
+              }/>
+              <Route path="/financialAccounts" element={
+                  <ProtectedRoute>
+                    <FinancialAccounts />
                   </ProtectedRoute>
               }/>
               <Route path="/transactions" element={

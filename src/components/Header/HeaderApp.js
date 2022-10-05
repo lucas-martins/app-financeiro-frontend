@@ -4,6 +4,7 @@ import {Home} from 'grommet-icons'
 import { useNavigate } from 'react-router-dom'
 
 import { UserContext } from '../../UserContext'
+import styles from './HeaderApp.module.css'
 
 export const HeaderApp = () => {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ export const HeaderApp = () => {
     <>
     {
       token ? 
-      <Header background="dark-1" sticky= "scrollUp">
+      <Header className={styles.header} background="dark-1" sticky= "scrollUp">
         <Button icon={<Home />} hoverIndicator onClick={() => navigate('/')} />
         <h2>App Financeiro</h2>
         <Menu
