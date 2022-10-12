@@ -9,20 +9,20 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserStorage} from './UserContext';
 
 import { theme } from './config/appTheme';
-import { ToastContainerApp } from './components/utils/ToastContainerApp';
+import { ToastContainerApp } from './Helpers/ToastContainerApp';
 
 import { HeaderApp } from './components/Header/HeaderApp';
 import { SidebarApp } from './components/Sidebar/SidebarApp';
-import { Login } from './components/Login/Login';
-import { Register } from './components/Register/Register';
-import { Home } from './components/Home/Home';
+import { Login } from './pages/Login/Login';
+import { Register } from './pages/Register/Register';
+import { Home } from './pages/Home/Home';
 import { Account } from './components/Account/Account';
 import {Graphs} from './components/Graphs/Graphs'
 import { Transactions } from './components/Transactions/Transactions';
 import {Calendar} from './components/Calendar/Calendar'
 
 import ProtectedRoute from './Helpers/ProtectedRoute';
-import { FinancialAccounts } from './components/FinancialAccounts/FinancialAccounts';
+import { FinancialAccounts } from './pages/FinancialAccounts/FinancialAccounts';
 
 
 function App() {
