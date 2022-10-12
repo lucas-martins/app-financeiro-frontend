@@ -40,7 +40,7 @@ export const Login = () => {
     const {data, error} = response
 
     if(response.status === 200) {
-      window.localStorage.setItem('user_id', JSON.stringify(data.user))
+      window.localStorage.setItem('user', JSON.stringify(data.user))
       window.localStorage.setItem('token', data.token)
       toast.success('Login realizado com sucesso!', toastConfig);
       setFormValue(defaultValue)
