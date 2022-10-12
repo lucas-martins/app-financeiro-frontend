@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import styles from './SideBarBody.module.css'
 import { buttons } from './SideBarBodyButtons'
 
-export const SideBarBody = () => {
+export const SideBarBody = ({closeSideBar}) => {
   const navigate = useNavigate()
 
   return (
@@ -19,6 +19,7 @@ export const SideBarBody = () => {
               className={styles.button}
               label={button.label}
               onClick={() => {
+                closeSideBar(false)
                 navigate(`/${button.route}`)
               }}
             />

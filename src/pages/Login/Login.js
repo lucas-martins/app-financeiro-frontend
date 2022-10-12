@@ -2,14 +2,13 @@ import React from 'react'
 import { Card, CardHeader, CardBody, Button, Form, FormField, TextInput, Box, Spinner } from 'grommet'
 import { FormView, Hide } from 'grommet-icons'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { toast } from 'react-toastify';
 
 import {loginInputs} from './LoginInputs'
-import { baseUrl } from '../../Helpers/BaseUrl'
 import { toastConfig } from '../../config/ToastConfig';
 import { UserContext } from '../../UserContext'
 import styles from './Login.module.css'
+import { login } from '../../Api'
 
 const defaultValue = {
   email: '',
@@ -34,10 +33,13 @@ export const Login = () => {
     setHasEmptyValues(hasEmptyValues || passwordMinLength || loading)
   }, [formValue, setHasEmptyValues, loading])
 
-  const formSubmitted = (formValue) => {
+  const formSubmitted = async (formValue) => {
     setLoading(true)
-    axios.post(`${baseUrl}/login`, formValue)
-    .then(({data}) => {
+
+    const response = await login(formValue)
+    const {data, error} = response
+
+    if(response.status === 200) {
       window.localStorage.setItem('user_id', JSON.stringify(data.user))
       window.localStorage.setItem('token', data.token)
       toast.success('Login realizado com sucesso!', toastConfig);
@@ -45,11 +47,11 @@ export const Login = () => {
       setShowPassword([])
       setToken(true)
       navigate('/home')
-    })
-    .catch((error) => {
+    } else {
       toast.error(error.response.data.message, toastConfig);
-    })
-    .finally(() => setLoading(false))
+    }
+
+    setLoading(false)
   }
 
   const handlePasswordButton = (field) => {
@@ -57,7 +59,7 @@ export const Login = () => {
   }
 
   return (
-    <div className='global-container user-container'>
+    <div className='global-container user-container user-not-logged'>
       <Card height="large" width="large" background="dark-2">
         <CardHeader className={styles.header} pad="medium" background="dark-1">
             <h1>Faça Login</h1>

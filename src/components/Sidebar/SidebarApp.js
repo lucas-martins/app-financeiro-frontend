@@ -10,12 +10,16 @@ export const SidebarApp = () => {
   const {token} = React.useContext(UserContext)
   const [menuOpen, setMenuOpen] = React.useState(false)
 
+  const closeSideBar = (status) => {
+    setMenuOpen(status)
+  }
+
   return (
     <>
       {
         token ?
         <div>
-          {menuOpen && <SideBarBody />}
+          {menuOpen && <SideBarBody closeSideBar={closeSideBar} />}
           <div className={menuOpen ? `${styles.sideBarMenuOpen}` : `${styles.sideBarMainButton}`}>
             <Button 
               primary={menuOpen ? false : true}

@@ -11,7 +11,7 @@ export const FinancialAccounts = () => {
   }
 
   return (
-    <div className='user-container'>
+    <div className='user-container user-logged'>
       <div className='user-inside-container'>
         <div className={styles.title}>
           <h3>Minhas Contas</h3>

@@ -61,7 +61,7 @@ export const Register = () => {
   }
 
   return (
-    <div className="global-container user-container">
+    <div className="global-container user-container user-not-logged">
       <Card height="large" width="large" background="dark-2">
         <CardHeader className={styles.header} pad="medium" background="dark-1">
           <Tip 
