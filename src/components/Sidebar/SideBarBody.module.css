@@ -1,7 +1,7 @@
 .backgroundSideBar {
-    background-color: #555555;
+    background-color: #333333;
     width: 20%;
-    min-height: 18%;
+    height: 100%;
     position: absolute;
 
 }
@@ -16,6 +16,7 @@
     border-radius: 0 !important;
     border-color: transparent !important;
     color: #eee !important;
+    margin-bottom: 1rem !important;
 }
 
 .button:hover {

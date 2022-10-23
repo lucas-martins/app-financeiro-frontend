@@ -45,9 +45,11 @@ export const FinancialAccounts = () => {
           </Box>
 
         </div>
-        {
-          accounts.map(account => <FinancialAccountCard key={account._id} data={account} />)
-        }
+        <div className={styles.container}>
+          {
+            accounts.map(account => <FinancialAccountCard key={account._id} data={account} />)
+          }
+        </div>
       </div>
     </div>
   )

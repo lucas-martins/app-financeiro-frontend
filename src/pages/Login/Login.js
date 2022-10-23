@@ -3,9 +3,9 @@ import { Card, CardHeader, CardBody, Button, Form, FormField, TextInput, Box, Sp
 import { FormView, Hide } from 'grommet-icons'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 import {loginInputs} from './LoginInputs'
-import { toastConfig } from '../../config/ToastConfig';
 import { UserContext } from '../../UserContext'
 import styles from './Login.module.css'
 import { login } from '../../Api'
@@ -42,13 +42,15 @@ export const Login = () => {
     if(response.status === 200) {
       window.localStorage.setItem('user', JSON.stringify(data.user))
       window.localStorage.setItem('token', data.token)
-      toast.success('Login realizado com sucesso!', toastConfig);
+      toast.success('Login realizado com sucesso!');
+
+      
       setFormValue(defaultValue)
       setShowPassword([])
       setToken(true)
       navigate('/home')
     } else {
-      toast.error(error.response.data.message, toastConfig);
+      toast.error(error.response.data.message);
     }
 
     setLoading(false)
@@ -130,7 +132,6 @@ export const Login = () => {
             </div>
           </div>
         </CardBody>
-
       </Card>
     </div>
   )

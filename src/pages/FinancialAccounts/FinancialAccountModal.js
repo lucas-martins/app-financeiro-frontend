@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, Button, Layer, Form, FormField, TextInput, Spinner } from 'grommet'
 import { Close } from 'grommet-icons'
 import { toast } from 'react-toastify';
-import { toastConfig } from '../../config/ToastConfig';
 
 import { addAccount, retrieveAccounts } from '../../Api'
 
@@ -40,10 +39,10 @@ export const FinancialAccountModal = ({handleModalStatus}) => {
 			const response = await retrieveAccounts()
       if(response.status === 200) setAccounts(response.data)
 
-      toast.success(data.message, toastConfig);
+      toast.success(data.message);
       setFormValue(defaultValue)
     } else {
-      toast.error(error.response.data.message, toastConfig);
+      toast.error(error.response.data.message,);
     }
 
 		setLoading(false)

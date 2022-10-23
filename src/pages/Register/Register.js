@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 
 import { registerInputs } from './RegisterInputs'
 import { baseUrl } from '../../Helpers/BaseUrl'
-import { toastConfig } from '../../config/ToastConfig';
 import { UserContext } from '../../UserContext';
 
 import { useNavigate } from 'react-router-dom'
@@ -45,13 +44,13 @@ export const Register = () => {
     setLoading(true)
     axios.post(`${baseUrl}/registerUser`, formValue)
     .then((response) => {
-      toast.success(response.data.message, toastConfig);
+      toast.success(response.data.message);
       setFormValue(defaultValue)
       setShowFields([])
       navigate('/login')
     })
     .catch((error) => {
-      toast.error(error.response.data.message, toastConfig);
+      toast.error(error.response.data.message);
     })
     .finally(() => setLoading(false))
   }

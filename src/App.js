@@ -2,6 +2,7 @@ import React from 'react'
 import { Grommet } from 'grommet'
 
 import './App.css';
+import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -9,7 +10,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserStorage} from './UserContext';
 
 import { theme } from './config/appTheme';
-import { ToastContainerApp } from './Helpers/ToastContainerApp';
 
 import { HeaderApp } from './components/Header/HeaderApp';
 import { SidebarApp } from './components/Sidebar/SidebarApp';
@@ -74,7 +74,17 @@ function App() {
             </Routes>
           </main>
         </UserStorage>
-        <ToastContainerApp />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </BrowserRouter>
     </Grommet>
   );
