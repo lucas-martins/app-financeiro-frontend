@@ -21,4 +21,18 @@ export const addAccount = async (payload) => {
   .catch((error) => error)
 }
 
+export const updateAccount = async (payload) => {
+  return api.put(`${baseUrl}/updateAccount`, payload)
+  .then((response) => response)
+  .catch((error) => error)
+}
+
+export const removeAccount = async (accountId) => {
+  console.log(accountId)
+
+  return api.delete(`${baseUrl}/removeAccount/${accountId}`, {data: {userId: user.id}})
+  .then((response) => response)
+  .catch((error) => error)
+}
+
 

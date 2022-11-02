@@ -17,17 +17,17 @@ const defaultValue = {
 
 export const FinancialAccountModal = ({handleModalStatus}) => {
 	const [formValue, setFormValue] = React.useState(defaultValue);
-  const [hasEmptyValues, setHasEmptyValues] = React.useState(true)
+  	const [hasEmptyValues, setHasEmptyValues] = React.useState(true)
 
 	const {loading, setLoading, setAccounts} = React.useContext(UserContext)
 
 	React.useEffect(() => {
-    const values = Object.values(formValue)
+    	const values = Object.values(formValue)
 
-    const hasEmptyValues = values.some(value => !value.length)
+    	const hasEmptyValues = values.some(value => !value.length)
 
-    setHasEmptyValues(hasEmptyValues || loading)
-  }, [formValue, setHasEmptyValues, loading])
+    	setHasEmptyValues(hasEmptyValues || loading)
+  	}, [formValue, setHasEmptyValues, loading])
 
 	const handleFormSubmit = async (formValue) => {
 		setLoading(true)
@@ -50,18 +50,18 @@ export const FinancialAccountModal = ({handleModalStatus}) => {
 	}
   return (
     <Layer
-			onEsc={() => handleModalStatus(false)}
-			onClickOutside={() => handleModalStatus(false)}
-			full="horizontal"
-			margin="large"
-			hoverIndicator
-			className={styles.modalBox}
- 		>
+		onEsc={() => handleModalStatus(false)}
+		onClickOutside={() => handleModalStatus(false)}
+		full="horizontal"
+		margin="large"
+		hoverIndicator
+		className={styles.modalBox}
+	>
     	<Button 
-				icon={<Close />} 
-				onClick={() => handleModalStatus(false)}
-				className={styles.closeButton}
-			/>
+			icon={<Close />} 
+			onClick={() => handleModalStatus(false)}
+			className={styles.closeButton}
+		/>
     	<h1>Adicionar Conta</h1>
 			<Form
 				value={formValue}
@@ -100,13 +100,6 @@ export const FinancialAccountModal = ({handleModalStatus}) => {
 					/>
 				</Box>
 			</Form>
-			{/* <div className={styles.addAccount}>
-				<Button
-					primary
-					label="Adicionar"
-					onClick={() => addAccount()}
-				/>
-			</div> */}
   	</Layer>
   )
 }

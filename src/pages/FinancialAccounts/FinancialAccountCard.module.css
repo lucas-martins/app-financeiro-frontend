@@ -13,6 +13,10 @@ h2 {
     margin-bottom: 1rem;
 }
 
+.buttonContainer {
+    float: right;
+}
+
 .accounts {
     display: flex;
     justify-content: space-between;

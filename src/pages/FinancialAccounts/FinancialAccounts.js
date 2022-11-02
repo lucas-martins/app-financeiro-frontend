@@ -10,6 +10,9 @@ import { UserContext } from '../../UserContext'
 export const FinancialAccounts = () => {
 
   const [show, setShow] = React.useState(false);
+  const [editingModal, setEditingModal] = React.useState('')
+  const [removingModal, setRemovingModal] = React.useState('')
+  const [accountUpdated, setAccountUpdated] = React.useState(false)
 
   const {accounts, setAccounts} = React.useContext(UserContext)
 
@@ -19,13 +22,17 @@ export const FinancialAccounts = () => {
       if(response.status === 200) {
         const {data} = response
         setAccounts(data)
+        setAccountUpdated(true)
       }
     }
 
-    getAccounts()
-  }, [setAccounts])
+    if(!accountUpdated)
+      getAccounts()
+  }, [setAccounts, accountUpdated, setAccountUpdated])
 
   const handleModalStatus = (status) => setShow(status)
+  const handleEditingCard = (id) => setEditingModal(id)
+  const handleRemovingCard = (id) => setRemovingModal(id)
 
   return (
     <div className='user-container user-logged'>
@@ -34,7 +41,7 @@ export const FinancialAccounts = () => {
           <h3>Minhas Contas</h3>
           <Box>
             <Button
-              primary 
+              primary
               className={styles.button}
               label='Adicionar Conta'
               onClick={() => setShow(true)}
@@ -47,7 +54,16 @@ export const FinancialAccounts = () => {
         </div>
         <div className={styles.container}>
           {
-            accounts.map(account => <FinancialAccountCard key={account._id} data={account} />)
+            accounts.map(account => 
+              <FinancialAccountCard
+                key={account._id}
+                data={account}
+                editingModal={editingModal}
+                removingModal={removingModal}
+                handleEditingCard={handleEditingCard}
+                handleRemovingCard={handleRemovingCard}
+                setAccountUpdated={setAccountUpdated}
+              />)
           }
         </div>
       </div>
