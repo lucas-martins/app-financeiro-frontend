@@ -66,6 +66,27 @@ body {
   animation: animeRight .5s forwards;
 }
 
+.drvaUG {
+  background-color: #555555 !important
+}
+
+.drvaUG h3 {
+  color: white
+}
+
+.ixrMfI {
+  color: white !important
+}
+
+.kKhdEN path {
+  stroke: white !important
+}
+
+.cRifOi {
+  border-bottom: 1px solid #555555 !important;
+}
+
+
 @keyframes animeRight {
   to {
       opacity: 1;

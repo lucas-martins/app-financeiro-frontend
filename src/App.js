@@ -16,10 +16,9 @@ import { SidebarApp } from './components/Sidebar/SidebarApp';
 import { Login } from './pages/Login/Login';
 import { Register } from './pages/Register/Register';
 import { Home } from './pages/Home/Home';
+import { Transactions } from './pages/Transactions/Transactions';
 import { Account } from './components/Account/Account';
 import {Graphs} from './components/Graphs/Graphs'
-import { Transactions } from './components/Transactions/Transactions';
-import {Calendar} from './components/Calendar/Calendar'
 
 import ProtectedRoute from './Helpers/ProtectedRoute';
 import { FinancialAccounts } from './pages/FinancialAccounts/FinancialAccounts';
@@ -64,11 +63,6 @@ function App() {
               <Route path="/graphs" element={
                   <ProtectedRoute>
                     <Graphs />
-                  </ProtectedRoute>
-              }/>
-              <Route path="/calendar" element={
-                  <ProtectedRoute>
-                    <Calendar />
                   </ProtectedRoute>
               }/>
             </Routes>

@@ -10,10 +10,10 @@ const checkEndpoint = (url) => {
 export const api = axios.create()
 api.interceptors.request.use(
   config => {
-    const {id} = JSON.parse(window.localStorage.getItem('user'))
+    const user = JSON.parse(window.localStorage.getItem('user'))
 
-    if (id && checkEndpoint(config.url)) {
-      config.data['userId'] = id
+    if (user?.id && checkEndpoint(config.url)) {
+      config.data['userId'] = user.id
     }
 
     return config

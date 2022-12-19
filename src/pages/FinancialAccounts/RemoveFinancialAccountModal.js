@@ -1,5 +1,5 @@
 import React from 'react'
-import {Layer, Form, FormField, TextInput, Box, Button, Spinner } from 'grommet'
+import {Layer, Box, Button, Spinner } from 'grommet'
 import {Close} from 'grommet-icons'
 import { toast } from 'react-toastify';
 import { UserContext } from '../../UserContext';
@@ -44,8 +44,6 @@ export const RemoveFinancialAccountModal = ({data, handleRemovingCardModal, setA
     <h1 style={{color: '#FF4040'}}>Atenção!</h1>
     <p>
       Ao realizar essa ação todas as informações referentes a essa conta serão removidas desta aplicação.
-      
-      
     </p>
     <p>
       <strong>NÃO</strong> será possível reverter essa operação. 

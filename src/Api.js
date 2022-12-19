@@ -9,6 +9,7 @@ export const login = async (payload) => {
   .catch((error) => error)
 }
 
+// ---------- Accounts Endpoints ----------
 export const retrieveAccounts = async () => {
   return api.get(`${baseUrl}/retrieveAccounts/${user.id}`)
   .then((response) => response)
@@ -28,11 +29,28 @@ export const updateAccount = async (payload) => {
 }
 
 export const removeAccount = async (accountId) => {
-  console.log(accountId)
-
   return api.delete(`${baseUrl}/removeAccount/${accountId}`, {data: {userId: user.id}})
   .then((response) => response)
   .catch((error) => error)
 }
 
+// ---------- Transactions Endpoints ----------
+export const retrieveTransactions = async () => {
+  return api.get(`${baseUrl}/retrieveTransactions/${user.id}`)
+  .then((response) => response)
+  .catch((error) => error)
+}
+
+export const addTransaction = async (payload) => {
+  return api.post(`${baseUrl}/addTransaction`, payload)
+  .then((response) => response)
+  .catch((error) => error)
+}
+
+// ---------- Categories Endpoints ----------
+export const retrieveCategories = async () => {
+  return api.get(`${baseUrl}/retrieveCategories/${user.id}`)
+  .then((response) => response)
+  .catch((error) => error)
+}
 

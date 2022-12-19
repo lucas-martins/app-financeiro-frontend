@@ -14,9 +14,5 @@ export const buttons = [
     {
         label: 'Gráficos',
         route: 'graphs'
-    },
-    {
-        label: 'Calendário',
-        route: 'calendar'
-    },
+    }
 ]
