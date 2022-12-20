@@ -84,9 +84,23 @@ export const TransactionAddModal = ({handleModalStatus}) => {
 
 		if(response.status === 200) {
 			const response = await retrieveTransactions()
-      setTransactions(response.data.reverse())
-			toast.success(data.message);
-			setFormValue(defaultValue)
+      if(response.status === 200) {
+        const accounts = await retrieveAccounts()
+        if(accounts.status === 200) {
+          const accountData = accounts.data.reduce((acc, account) => {
+            acc[account._id] = account.accountName
+            return acc
+          }, {})
+  
+          const transactions = response.data.map(transaction => {
+              transaction.accountName = accountData[transaction.accountId]
+              return transaction
+          })
+          setTransactions(transactions.reverse())
+          toast.success(data.message);
+          setFormValue(defaultValue)
+        }
+      }
 		} else {
 			toast.error(error.response.data.message,);
 		}

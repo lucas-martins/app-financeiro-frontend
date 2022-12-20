@@ -3,7 +3,7 @@ import React from 'react'
 import { Table, TableHeader, TableBody, TableRow, TableCell, Spinner, Card } from 'grommet'
 
 import { transactionsFields } from './TransactionTableFields'
-import { retrieveTransactions } from '../../Api'
+import { retrieveTransactions, retrieveAccounts } from '../../Api'
 import { UserContext } from '../../UserContext'
 
 import styles from './TransactionTable.module.css'
@@ -19,8 +19,21 @@ export const TransactionTable = () => {
       const response = await retrieveTransactions()
       if(response.status === 200) {
         const {data} = response
-        setTransactions(data.reverse())
-        setTransactionsUpdated(true)
+        const accounts = await retrieveAccounts()
+        if(response.status === 200) {
+          const accountData = accounts.data.reduce((acc, account) => {
+            acc[account._id] = account.accountName
+            return acc
+          }, {})
+  
+          const transactions = data.map(transaction => {
+              transaction.accountName = accountData[transaction.accountId]
+              return transaction
+          })
+  
+          setTransactions(transactions.reverse())
+          setTransactionsUpdated(true)
+        }
       }
       setLoading(false)
     }
