@@ -33,17 +33,17 @@ export const FinancialAccountModal = ({handleModalStatus}) => {
 		setLoading(true)
 
 		const response = await addAccount(formValue)
-		const {data, error} = response
+		const {data, status} = response
 
-		if(response.status === 200) {
+		if(status === 200) {
 			const response = await retrieveAccounts()
-      if(response.status === 200) setAccounts(response.data)
+			if(response.status === 200) setAccounts(response.data)
 
-      toast.success(data.message);
-      setFormValue(defaultValue)
-    } else {
-      toast.error(error.response.data.message,);
-    }
+			toast.success(data.message);
+			setFormValue(defaultValue)
+		} else {
+		  toast.error(response.response.data.message);
+		}
 
 		setLoading(false)
 		handleModalStatus(false)
